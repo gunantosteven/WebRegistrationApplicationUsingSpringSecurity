@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 3, 2013 3:58:15 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.uwika.bean.Mahasiswa" table="mahasiswa" catalog="uwika">
+        <id name="noPendaftaran" type="string">
+            <column name="noPendaftaran" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="jurusan" type="string">
+            <column name="jurusan" length="50" />
+        </property>
+        <property name="nama" type="string">
+            <column name="nama"/>
+        </property>
+        <property name="jenisKelamin" type="string">
+            <column name="jenisKelamin" length="20" />
+        </property>
+        <property name="tempatLahir" type="string">
+            <column name="tempatLahir" length="50" />
+        </property>
+        <property name="agama" type="string">
+            <column name="agama" length="20" />
+        </property>
+        <property name="alamat" type="string">
+            <column name="alamat"/>
+        </property>
+        <property name="noTelpon" type="string">
+            <column name="noTelpon" length="30" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="30" />
+        </property>
+        <property name="tanggalLahir" type="date">
+            <column name="tanggalLahir" length="10" />
+        </property>
+        <set name="kuliahs" inverse="true">
+            <key>
+                <column name="nim" length="20" />
+            </key>
+            <one-to-many class="com.uwika.bean.Kuliah" />
+        </set>
+    </class>
+</hibernate-mapping>
