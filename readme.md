@@ -1,4 +1,4 @@
-Project Template menggunakan Bootstrap - JQuery - JSP - SpringMVC - Hibernate
+Project Template using Bootstrap - JQuery - JSP - SpringMVC - SpringSecurity - Hibernate
 ===================
 
 Tools
