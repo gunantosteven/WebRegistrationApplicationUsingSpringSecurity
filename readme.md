@@ -1,4 +1,4 @@
-Project Template using Bootstrap - JQuery - JSP - SpringMVC - SpringSecurity - SpringSecurity - Hibernate
+Project Template using Bootstrap - JQuery - JSP - SpringMVC - SpringSecurity - Hibernate
 ===================
 
 Tools
@@ -18,4 +18,4 @@ How to Build
     (Maven automatically downloads libraries to the project)
 4. Click Shift+F6 to run the project
 
-I have uploaded it on registrasi-gunanto.rhcloud.com
+I have uploaded it on http://registrasi-gunanto.rhcloud.com
