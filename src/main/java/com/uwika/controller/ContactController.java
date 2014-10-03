@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Steven Gunanto
  */
 @Controller
-public class AdminController {
+public class ContactController {
     
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String index() {
-        return "redirect:admin/mahasiswa";
+        return "contact";
     }
     
 }

@@ -25,16 +25,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="${pageContext.request.contextPath}">Home</a>
+                        <a href="${pageContext.request.contextPath}/">Home</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/registrasi">Registrasi</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="${pageContext.request.contextPath}/about">About</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="${pageContext.request.contextPath}/contact">Contact</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/login">Login</a>

@@ -5,8 +5,6 @@
 package com.uwika.bean;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
@@ -15,8 +13,7 @@ import java.util.Set;
 public class Mahasiswa implements java.io.Serializable {
    private String noPendaftaran,jurusan,nama,jenisKelamin,agama,alamat,noTelpon,email,tempatLahir;
    private Date tanggalLahir;
-   private Set kuliahs = new HashSet(0);
-   
+
     public Mahasiswa() {
     }
 
@@ -112,13 +109,5 @@ public class Mahasiswa implements java.io.Serializable {
 
     public void setTempatLahir(String tempatLahir) {
         this.tempatLahir = tempatLahir;
-    }
-
-    public Set getKuliahs() {
-        return kuliahs;
-    }
-
-    public void setKuliahs(Set kuliahs) {
-        this.kuliahs = kuliahs;
     }
 }

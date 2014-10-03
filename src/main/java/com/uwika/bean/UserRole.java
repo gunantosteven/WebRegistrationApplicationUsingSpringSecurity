@@ -8,7 +8,7 @@ package com.uwika.bean;
  *
  * @author Steven Gunanto
  */
-public class UserRole implements java.io.Serializable {
+public class UserRole {
     private Integer userRoleId;
     private User user;
     private String role;

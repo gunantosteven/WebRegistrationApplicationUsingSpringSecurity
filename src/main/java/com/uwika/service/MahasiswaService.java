@@ -6,6 +6,7 @@ package com.uwika.service;
 
 import com.uwika.bean.Mahasiswa;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,13 @@ public class MahasiswaService extends BaseService {
         return strings;
     }
 
+    public List<Mahasiswa> get(String id)
+    {
+        return (List<Mahasiswa>) sessionFactory.getCurrentSession()
+                .createQuery("from Mahasiswa m where m.noPendaftaran = :noPendaftaran")
+                .setParameter("noPendaftaran", id).list();
+    }
+    
     @Override
     public Object select(String id) {
         return (Mahasiswa) sessionFactory.getCurrentSession()

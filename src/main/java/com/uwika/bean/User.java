@@ -11,7 +11,7 @@ import java.util.Set;
  *
  * @author Steven Gunanto
  */
-public class User implements java.io.Serializable {
+public class User {
     private String username;
     private String password;
     private boolean enabled;

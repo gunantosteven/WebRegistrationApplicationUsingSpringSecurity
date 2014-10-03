@@ -21,7 +21,7 @@
         <div class="container">
             
             <div id="dynamic">
-                <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/registrasi/save" >  
+                <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/registrasi/export" >  
                     <fieldset>
 
                         <!-- Form Name -->

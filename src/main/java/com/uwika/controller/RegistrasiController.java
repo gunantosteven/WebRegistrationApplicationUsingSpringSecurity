@@ -12,9 +12,12 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -36,6 +40,9 @@ public class RegistrasiController {
     @Autowired
     private MahasiswaService mahasiswaService;
     
+    @Autowired
+    private MailSender mailSender; 
+    
     @RequestMapping(value = "/registrasi", method = RequestMethod.GET )
     public String index(ModelMap modelMap)
     {
@@ -44,19 +51,33 @@ public class RegistrasiController {
         return "registrasi";
     }
     
-    @RequestMapping(value="/registrasi/save", method = RequestMethod.POST )
-    public String save(ModelMap modelMap, @ModelAttribute Mahasiswa mahasiswa)
+    @RequestMapping(value="/registrasi/export", method = RequestMethod.POST )
+    public ModelAndView save(ModelAndView modelAndView, @ModelAttribute Mahasiswa mahasiswa)
     {
         int count = 0;
-        modelMap.put("noPendaftaran",
-                mahasiswaService.getLastNoPendaftaran(simpleDateFormat.format(new Date())));
+        
         do
         {
             count++;
             try {
-                   mahasiswaService.save(mahasiswa);
-                   modelMap.put("validasi", "success");
-                   return "registrasi";
+                
+                // creating report
+                mahasiswaService.save(mahasiswa);
+                modelAndView.addObject("format", "pdf");
+                modelAndView.addObject("dataSource", mahasiswaService.get(mahasiswa.getNoPendaftaran()));
+                
+                // send message email
+                //creating message
+                SimpleMailMessage message = new SimpleMailMessage();
+                message.setFrom("widyakartikamail@gmail.com");
+                message.setTo(mahasiswa.getEmail());  
+                message.setSubject("Pendaftaran Mahasiswa Uwika");  
+                message.setText("Selamat anda telah bergabung\n" + "No Pendaftaran anda adalah : " + mahasiswa.getNoPendaftaran());  
+                //sending message  
+                mailSender.send(message);   
+                
+                
+                return modelAndView;
             } 
             catch (Exception e) {
                 if(e.getMessage().startsWith("Could not execute JDBC batch update;"))
@@ -68,8 +89,11 @@ public class RegistrasiController {
             }
         }while(10 >= count);
         
-        modelMap.put("validasi", "Server lagi sibuk,silakan coba beberapa saat lagi...");
-        return "registrasi";
+        modelAndView.addObject("noPendaftaran",
+                mahasiswaService.getLastNoPendaftaran(simpleDateFormat.format(new Date())));
+        modelAndView.addObject("validasi", "Server lagi sibuk,silakan coba beberapa saat lagi...");
+        modelAndView.setViewName("registrasi");
+        return modelAndView;
     }
     
     @InitBinder

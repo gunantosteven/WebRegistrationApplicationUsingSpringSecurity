@@ -35,11 +35,5 @@
         <property name="tanggalLahir" type="date">
             <column name="tanggalLahir" length="10" />
         </property>
-        <set name="kuliahs" inverse="true">
-            <key>
-                <column name="nim" length="20" />
-            </key>
-            <one-to-many class="com.uwika.bean.Kuliah" />
-        </set>
     </class>
 </hibernate-mapping>
