@@ -5,7 +5,8 @@ Tools
 -------------------
 * IDE - Netbeans 7.2
 * DB - MySQL
-* Java Framework - Hibernate ORM - SpringMVC - SpringSecurity
+* Java Framework - Hibernate ORM - SpringMVC - SpringSecurity - SpringMail
+* Jasper Report 5.5.1
 * JS Framework - JQuery
 * CSS Framework - Bootstrap
 * Build Tool - Maven
