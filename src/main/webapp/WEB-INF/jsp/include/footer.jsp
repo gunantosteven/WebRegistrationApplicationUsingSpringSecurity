@@ -23,3 +23,6 @@
         
         <!-- Bootstrap Bootstrap JavaScript -->
         <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+        
+        <!-- Select2 JavaScript -->
+        <script src="${pageContext.request.contextPath}/js/select2.js"></script>

@@ -9,3 +9,5 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
         <!-- Bootstrap Bootstrap JavaScript -->
         <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+        
+        <script src="${pageContext.request.contextPath}/js/select2.js"></script>

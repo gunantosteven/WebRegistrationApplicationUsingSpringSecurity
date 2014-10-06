@@ -56,14 +56,18 @@ public class KuliahService extends BaseService {
         return (Kuliah) sessionFactory.getCurrentSession()
                 .createQuery("from Kuliah where id.id = :id")
                 .setString("id", id)
+                
                 .uniqueResult();
     }
 
-    @Override
-    public void delete(Object o) throws Exception {
+
+    public void delete(String id, String mataKuliah, String nik, String nim) throws Exception {
         sessionFactory.getCurrentSession()
-                .createQuery("DELETE FROM Kuliah where id.id = :id")
-                .setString("id", o.toString())
+                .createQuery("DELETE FROM Kuliah where id.id = :id AND id.namamatakuliah = :mataKuliah AND id.nik = :nik AND id.nim = :nim")
+                .setString("id", id)
+                .setString("mataKuliah", mataKuliah)
+                .setString("nik", nik)
+                .setString("nim", nim)
                 .executeUpdate();
     }
 
@@ -76,4 +80,10 @@ public class KuliahService extends BaseService {
                 .setString("search", search)
                 .uniqueResult();
     }
+
+    @Override
+    public void delete(Object o) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

@@ -39,7 +39,7 @@
                         <div class="control-group">
                             <label class="control-label" for="id">ID</label>
                             <div class="controls">
-                                <input id="id" name="id" value="${kuliah.id.id}" placeholder="masukkan id" class="input-xlarge" required="" type="text">
+                                <input id="id" name="id" value="${kuliah.id.id}" placeholder="masukkan id" class="form-control input-xlarge" required="" type="text">
                             </div>
                         </div>
 
@@ -47,8 +47,20 @@
                         <div class="control-group">
                             <label class="control-label" for="namamatakuliah">Nama Mata Kuliah</label>
                             <div class="controls">
-                                <input id="nama" name="namamatakuliah" value="${kuliah.id.namamatakuliah}" placeholder="masukkan nama mata kuliah" class="input-xlarge" required="" type="text">
-
+                                <select name="namamatakuliah"  id="e3">
+                                    <option></option>
+                                    <optgroup label="Umum">
+                                        <option value="ppkn">Pendidikan Kewarganegaraan</option>
+                                        <option value="agama">Agama</option>
+                                        <option value="inggris">Bahasa Inggris</option>
+                                        <option value="mandarin">Bahasa Mandarin</option>
+                                    </optgroup>
+                                    <optgroup label="Teknik Informatika">
+                                        <option value="alpro">Algoritama Pemrograman</option>
+                                        <option value="pbo">Pemrograman Beriontasi Object</option>
+                                        <option value="rpl">Rekyasa Perangkat Lunak</option>
+                                    </optgroup>
+                                </select>
                             </div>
                         </div>
                                 
@@ -56,7 +68,12 @@
                         <div class="control-group">
                             <label class="control-label" for="nik">NIK</label>
                             <div class="controls">                     
-                                <input id="nik" name="nik" value="${kuliah.id.nik}" placeholder="masukkan nik" class="input-xlarge" required="" type="text">
+                                <select name="nik"  id="e1">
+                                    <option></option>
+                                    <c:forEach items="${listNik}" var="item" varStatus="count">
+                                        <option value="${item.nik}">${item.nik} ${item.nama}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                             
@@ -64,11 +81,17 @@
                         <div class="control-group">
                             <label class="control-label" for="nim">NIM</label>
                             <div class="controls">
-                                <input id="nim" name="nim" value="${kuliah.id.nim}" placeholder="masukkan nim" class="input-xlarge" required="" type="text">
-
+                                <select name="nim"  id="e2">
+                                    <option></option>
+                                    <c:forEach items="${listNim}" var="item" varStatus="count">
+                                        <option value="${item.noPendaftaran}">${item.noPendaftaran} ${item.nama}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                           
+                        <br> <!--add distance !-->
+                        
                         <!-- submit -->
                         <div class="control-group">
                             <div class="controls">
@@ -92,6 +115,14 @@
         </div>
 
         <jsp:include page="include/footerAdmin.jsp" />
+        
+        <script>
+            $(document).ready(function() { $("#e1").select2({placeholder: "Pilih Dosen",width: '100%'}); });
+            
+            $(document).ready(function() { $("#e2").select2({placeholder: "Pilih Mahasiswa",width: '100%'}); });
+            
+            $(document).ready(function() { $("#e3").select2({placeholder: "Pilih Jurusan",width: '100%'}); });
+        </script>
     </body>
 </html>
 

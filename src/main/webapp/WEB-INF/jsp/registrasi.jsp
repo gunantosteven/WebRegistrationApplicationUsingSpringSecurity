@@ -40,13 +40,24 @@
                         <div class="control-group">
                             <label class="control-label" for="jurusan">Jurusan</label>
                             <div class="controls" >
-                                <select class="form-control" name="jurusan">
-                                    <option value="informatika">Informatika</option>
-                                    <option value="akuntasi">Akuntasi</option>
-                                    <option value="inggris">Sastra Inggris</option>
-                                    <option value="mandarin">Sastra Mandarin</option>
-                                    <option value="arsitektur">Arsitektur</option>
-                                  </select>
+                                <select name="jurusan"  id="e1">
+                                    <option></option>
+                                    <optgroup label="Teknik">
+                                        <option value="informatika">Informatika</option>
+                                        <option value="sipil">Sipil</option>
+                                        <option value="arsitektur">Arsitektur</option>
+                                        <option value="elektro">Elekto</option>
+                                    </optgroup>
+                                    <optgroup label="Sastra">
+                                        <option value="inggris">Inggris</option>
+                                        <option value="mandarin">Mandarin</option>
+                                    </optgroup>
+                                    <optgroup label="Ekonomi">
+                                        <option value="manajemen">Manajemen</option>
+                                        <option value="ibp">Internationl Business Program</option>
+                                        <option value="akuntasi">Akuntasi</option>
+                                    </optgroup>
+                                </select>
                             </div>
                         </div>
 
@@ -90,11 +101,11 @@
                             <label class="control-label" for="agama">Agama</label>
                             <div class="controls">
                                   <select class="form-control" name="agama">
-                                    <option value="kristen">Kristen</option>
-                                    <option value="katolik">Katolik</option>
-                                    <option value="islam">Islam</option>
-                                    <option value="hindu">Hindu</option>
-                                    <option value="buddha">Buddha</option>
+                                        <option value="kristen">Kristen</option>
+                                        <option value="katolik">Katolik</option>
+                                        <option value="islam">Islam</option>
+                                        <option value="hindu">Hindu</option>
+                                        <option value="buddha">Buddha</option>
                                   </select>
                             </div>
                         </div>
@@ -174,6 +185,10 @@
                 }
                     
             }
+        </script>
+        
+        <script>
+            $(document).ready(function() { $("#e1").select2({placeholder: "Pilih Jurusan",width: '100%'}); });
         </script>
       
     </body>

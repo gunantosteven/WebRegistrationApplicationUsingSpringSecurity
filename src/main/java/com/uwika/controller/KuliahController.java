@@ -7,7 +7,9 @@ package com.uwika.controller;
 import com.uwika.bean.Base;
 import com.uwika.bean.Kuliah;
 import com.uwika.bean.KuliahId;
+import com.uwika.service.DosenService;
 import com.uwika.service.KuliahService;
+import com.uwika.service.MahasiswaService;
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,6 +40,12 @@ public class KuliahController {
     @Autowired
     private KuliahService kuliahService;
     
+    @Autowired
+    private MahasiswaService mahasiswaService;
+    
+    @Autowired
+    private DosenService dosenService;
+    
     @RequestMapping(value = "/admin/kuliah", method = RequestMethod.GET)
     public String index() {
         return "admin/kuliah";
@@ -65,14 +73,16 @@ public class KuliahController {
     
     @RequestMapping(value ="/admin/kuliah/detail/{id}", method = RequestMethod.GET)
     public String view(ModelMap modelMap, @PathVariable String id) {
+        modelMap.addAttribute("listNim", mahasiswaService.getList());
         modelMap.put("kuliah", kuliahService.select(id));
         return "admin/kuliahEdit";
     }
     
-    @RequestMapping(value ="/admin/kuliah/delete/{id}", method = RequestMethod.GET)
-    public String delete(ModelMap modelMap, @PathVariable String id) {
+    @RequestMapping(value ="/admin/kuliah/delete/{id}/{mataKuliah}/{nik}/{nim}", method = RequestMethod.GET)
+    public String delete(ModelMap modelMap, @PathVariable String id, 
+        @PathVariable String mataKuliah, @PathVariable String nik, @PathVariable String nim) {
         try {
-            kuliahService.delete(id);
+            kuliahService.delete(id,mataKuliah,nik,nim);
         } catch (Exception e) {
             logger.error(e,e);
         }
@@ -80,7 +90,9 @@ public class KuliahController {
     }
     
     @RequestMapping(value ="/admin/kuliah/new", method = RequestMethod.GET)
-    public String add() {
+    public String add(ModelMap modelMap) {
+        modelMap.addAttribute("listNik", dosenService.getList());
+        modelMap.addAttribute("listNim", mahasiswaService.getList());
         return "admin/kuliahEdit";
     }
     

@@ -101,6 +101,12 @@ public class MahasiswaService extends BaseService {
                 .setParameter("noPendaftaran", id).list();
     }
     
+    public List<Mahasiswa> getList()
+    {
+        return (List<Mahasiswa>) sessionFactory.getCurrentSession()
+                .createQuery("from Mahasiswa").list();
+    }
+    
     @Override
     public Object select(String id) {
         return (Mahasiswa) sessionFactory.getCurrentSession()

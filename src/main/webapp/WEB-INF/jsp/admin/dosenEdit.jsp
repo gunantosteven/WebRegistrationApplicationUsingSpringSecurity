@@ -39,7 +39,7 @@
                         <div class="control-group">
                             <label class="control-label" for="nik">NIK</label>
                             <div class="controls">
-                                <input id="nik" name="nik" value="${dosen.nik}" placeholder="masukkan nik" class="input-xlarge" required="" type="text">
+                                <input id="nik" name="nik" value="${dosen.nik}" placeholder="masukkan nik" class="form-control input-xlarge" required="" type="text">
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                         <div class="control-group">
                             <label class="control-label" for="nama">Nama</label>
                             <div class="controls">
-                                <input id="nama" name="nama" value="${dosen.nama}" placeholder="masukkan nama" class="input-xlarge" required="" type="text">
+                                <input id="nama" name="nama" value="${dosen.nama}" placeholder="masukkan nama" class="form-control input-xlarge" required="" type="text">
 
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                         <div class="control-group">
                             <label class="control-label" for="alamat">Alamat</label>
                             <div class="controls">                     
-                                <textarea id="alamat" name="alamat"> ${dosen.alamat}</textarea>
+                                <textarea class="form-control" id="alamat" name="alamat"> ${dosen.alamat}</textarea>
                             </div>
                         </div>
                           

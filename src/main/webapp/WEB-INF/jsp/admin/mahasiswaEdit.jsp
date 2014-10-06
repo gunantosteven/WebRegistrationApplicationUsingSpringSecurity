@@ -39,13 +39,24 @@
                             <div class="control-group">
                                 <label class="control-label" for="jurusan">Jurusan</label>
                                 <div class="controls" >
-                                    <select class="form-control" name="jurusan">
-                                        <option value="informatika" ${mahasiswa.jurusan == 'informatika' ? "selected" : ""}>Informatika</option>
-                                        <option value="akuntasi" ${mahasiswa.jurusan == 'akuntasi' ? "selected" : ""}>Akuntasi</option>
-                                        <option value="inggris" ${mahasiswa.jurusan == 'inggris' ? "selected" : ""}>Sastra Inggris</option>
-                                        <option value="mandarin" ${mahasiswa.jurusan == 'mandarin' ? "selected" : ""}>Sastra Mandarin</option>
-                                        <option value="arsitektur" ${mahasiswa.jurusan == 'arsitektur' ? "selected" : ""}>Arsitektur</option>
-                                      </select>
+                                    <select name="jurusan"  id="e1">
+                                        <option></option>
+                                        <optgroup label="Teknik">
+                                            <option value="informatika" ${mahasiswa.jurusan == 'informatika' ? "selected" : ""}>Informatika</option>
+                                            <option value="sipil" ${mahasiswa.jurusan == 'sipil' ? "selected" : ""}>Sipil</option>
+                                            <option value="arsitektur" ${mahasiswa.jurusan == 'arsitektur' ? "selected" : ""}>Arsitektur</option>
+                                            <option value="elektro" ${mahasiswa.jurusan == 'elektro' ? "selected" : ""}>Elekto</option>
+                                        </optgroup>
+                                        <optgroup label="Sastra">
+                                            <option value="inggris" ${mahasiswa.jurusan == 'inggris' ? "selected" : ""}>Inggris</option>
+                                            <option value="mandarin" ${mahasiswa.jurusan == 'mandarin' ? "selected" : ""}>Mandarin</option>
+                                        </optgroup>
+                                        <optgroup label="Ekonomi">
+                                            <option value="manajemen" ${mahasiswa.jurusan == 'manajemen' ? "selected" : ""}>Manajemen</option>
+                                            <option value="ibp" ${mahasiswa.jurusan == 'ibp' ? "selected" : ""}>Internationl Business Program</option>
+                                            <option value="akuntasi" ${mahasiswa.jurusan == 'akuntasi' ? "selected" : ""}>Akuntasi</option>
+                                        </optgroup>
+                                    </select>
                                 </div>
                             </div>
 
@@ -160,7 +171,9 @@
             
             });
         </script>
-        
+        <script>
+            $(document).ready(function() { $("#e1").select2({width: '100%'}); });
+        </script>
     </body>
 </html>
 

@@ -15,6 +15,7 @@
 
         <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/dt_bootstrap.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/select2.css" rel="stylesheet">
         
         <!-- Bootstrap Datepicker CSS -->
         <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">

@@ -56,6 +56,12 @@ public class DosenService extends BaseService {
                 .setString("nik", nik)
                 .uniqueResult();
     }
+    
+    public List<Dosen> getList()
+    {
+        return sessionFactory.getCurrentSession()
+                .createQuery("from Dosen").list();
+    }
 
     @Override
     public void delete(Object o) throws Exception {

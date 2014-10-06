@@ -64,7 +64,7 @@
                     "sPaginationType": "full_numbers",
                     "aaSorting": [[0,'desc']],  
                     "aoColumns" : [   
-                         { sWidth: '20%',
+                         { sWidth: '20%', 
                         "bSortable": true,
                         "aTargets": [0]}, 
                         { sWidth: '30%', "bSortable": false }, 
@@ -72,7 +72,7 @@
                         { sWidth: '15%', "bSortable": false },
                         {sWidth: '20%', 
                             "mRender": function( data, type, row ) {
-                                    return '<a href="kuliah/delete/'+row[0]+'">Delete</a>';
+                                    return '<a href="kuliah/delete/'+row[0]+'/'+row[1]+'/'+row[2]+'/'+row[3]+'">Delete</a>';
                             },
                         "bSortable": false}
                     ] 
