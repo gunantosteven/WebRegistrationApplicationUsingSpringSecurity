@@ -61,7 +61,7 @@ public class DosenController {
     @RequestMapping(value ="/admin/dosen/delete/{id}", method = RequestMethod.GET)
     public String delete(ModelMap modelMap, @PathVariable String id) {
         try {
-            dosenService.delete(id);
+            dosenService.delete(dosenService.select(id));
         } catch (Exception e) {
             logger.error(e,e);
         }

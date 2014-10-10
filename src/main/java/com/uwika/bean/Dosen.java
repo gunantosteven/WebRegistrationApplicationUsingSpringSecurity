@@ -19,17 +19,12 @@ public class Dosen implements java.io.Serializable {
     public Dosen() {
     }
 
-	
-    public Dosen(String nik) {
+    public Dosen(String nik, String nama, String alamat) {
         this.nik = nik;
+        this.nama = nama;
+        this.alamat = alamat;
     }
-    public Dosen(String nik, String nama, String alamat, Set kuliahs) {
-       this.nik = nik;
-       this.nama = nama;
-       this.alamat = alamat;
-       this.kuliahs = kuliahs;
-    }
-   
+
     public String getNik() {
         return this.nik;
     }

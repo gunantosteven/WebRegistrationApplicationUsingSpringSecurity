@@ -65,10 +65,7 @@ public class DosenService extends BaseService {
 
     @Override
     public void delete(Object o) throws Exception {
-        sessionFactory.getCurrentSession()
-                .createQuery("DELETE FROM Dosen where nik = :nik")
-                .setString("nik", o.toString())
-                .executeUpdate();
+        sessionFactory.getCurrentSession().delete(o);
     }
 
     @Override

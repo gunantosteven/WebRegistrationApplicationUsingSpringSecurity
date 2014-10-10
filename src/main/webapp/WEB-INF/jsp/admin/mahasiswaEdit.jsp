@@ -100,11 +100,11 @@
                                 <label class="control-label" for="agama">Agama</label>
                                 <div class="controls">
                                       <select class="form-control" name="agama">
-                                        <option value="kristen">Kristen</option>
-                                        <option value="katolik">Katolik</option>
-                                        <option value="islam">Islam</option>
-                                        <option value="hindu">Hindu</option>
-                                        <option value="buddha">Buddha</option>
+                                        <option value="kristen" ${mahasiswa.agama == 'kristen' ? "selected" : ""}>Kristen</option>
+                                        <option value="katolik" ${mahasiswa.agama == 'katolik' ? "selected" : ""}>Katolik</option>
+                                        <option value="islam" ${mahasiswa.agama == 'islam' ? "selected" : ""}>Islam</option>
+                                        <option value="hindu" ${mahasiswa.agama == 'hindu' ? "selected" : ""}>Hindu</option>
+                                        <option value="buddha" ${mahasiswa.agama == 'buddha' ? "selected" : ""}>Buddha</option>
                                       </select>
                                 </div>
                             </div>
@@ -130,6 +130,43 @@
                                 <label class="control-label" for="email">Alamat E-mail</label>
                                 <div class="controls">                     
                                     <input id="email" name="email" value="${mahasiswa.email}" placeholder="masukan alamat e-mail" class="form-control" required="" type="email">
+                                </div>
+                            </div>
+                                
+                            <!-- Text Input -->
+                            <div class="control-group">
+                                <label class="control-label" for="noRekening">No Rekening</label>
+                                <div class="controls">                     
+                                    <input id="noRekening" name="noRekening" value="${mahasiswa.rekening.noRekening}" placeholder="masukan no rekening" class="form-control" type="text" readonly="readonly">
+                                </div>
+                            </div>
+                                
+                            <!-- Text Input -->
+                            <div class="control-group">
+                                <label class="control-label" for="namaRekening">Nama Rekening</label>
+                                <div class="controls">                     
+                                    <input id="namaRekening" name="namaRekening" value="${mahasiswa.rekening.namaRekening}" placeholder="masukan nama rekening" class="form-control" type="text" readonly="readonly">
+                                </div>
+                            </div>
+                                
+                            <!-- Text Input -->
+                            <div class="control-group">
+                                <label class="control-label" for="nominal">Nominal</label>
+                                <div class="controls">                     
+                                    <input id="nominal" name="nominal" value="${mahasiswa.rekening.nominal}" placeholder="masukan nominal" class="form-control" type="text" readonly="readonly">
+                                </div>
+                            </div>
+                                
+                            <!-- Select -->
+                            <div class="control-group">
+                                <label class="control-label" for="status">Status</label>
+                                <div class="controls">
+                                      <select class="form-control" name="status">
+                                        <option value="BELUM BAYAR" ${mahasiswa.status == 'BELUM BAYAR' ? "selected" : ""}>BELUM BAYAR</option>
+                                        <option value="PROSES" ${mahasiswa.status == 'PROSES' ? "selected" : ""}>PROSES</option>
+                                        <option value="SUDAH BAYAR" ${mahasiswa.status == 'SUDAH BAYAR' ? "selected" : ""}>SUDAH BAYAR</option>
+                                        <option value="TIDAK MASUK" ${mahasiswa.status == 'TIDAK MASUK' ? "selected" : ""}>TIDAK MASUK</option>
+                                      </select>
                                 </div>
                             </div>
 

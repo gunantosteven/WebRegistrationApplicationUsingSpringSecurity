@@ -5,19 +5,19 @@
 package com.uwika.controller;
 
 import com.uwika.bean.Mahasiswa;
+import com.uwika.bean.Rekening;
 import com.uwika.service.MahasiswaService;
+import com.uwika.service.RekeningService;
 import java.beans.PropertyEditorSupport;
-import java.sql.BatchUpdateException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -41,7 +41,10 @@ public class RegistrasiController {
     private MahasiswaService mahasiswaService;
     
     @Autowired
-    private MailSender mailSender; 
+    private RekeningService rekeningService;
+    
+    @Autowired
+    private JavaMailSender  mailSender; 
     
     @RequestMapping(value = "/registrasi", method = RequestMethod.GET )
     public String index(ModelMap modelMap)
@@ -52,7 +55,7 @@ public class RegistrasiController {
     }
     
     @RequestMapping(value="/registrasi/export", method = RequestMethod.POST )
-    public ModelAndView save(ModelAndView modelAndView, @ModelAttribute Mahasiswa mahasiswa)
+    public ModelAndView save(ModelAndView modelAndView, @ModelAttribute Mahasiswa mahasiswa, HttpServletRequest request)
     {
         int count = 0;
         
@@ -60,23 +63,46 @@ public class RegistrasiController {
         {
             count++;
             try {
+                mahasiswa.setStatus("BELUM BAYAR");
+                mahasiswa.setUuid(java.util.UUID.randomUUID().toString());
+                mahasiswaService.save(mahasiswa);
                 
                 // creating report
-                mahasiswaService.save(mahasiswa);
                 modelAndView.addObject("format", "pdf");
                 modelAndView.addObject("dataSource", mahasiswaService.get(mahasiswa.getNoPendaftaran()));
                 
-                // send message email
-                //creating message
-                SimpleMailMessage message = new SimpleMailMessage();
-                message.setFrom("widyakartikamail@gmail.com");
-                message.setTo(mahasiswa.getEmail());  
-                message.setSubject("Pendaftaran Mahasiswa Uwika");  
-                message.setText("Selamat anda telah bergabung\n" + "No Pendaftaran anda adalah : " + mahasiswa.getNoPendaftaran());  
+//                Rekening rekening = new Rekening();
+//                rekening.setHargaTransfer(0);
+//                rekening.setMahasiswa(mahasiswa);
+//                rekening.setNamaRekening("asd");
+//                rekening.setNoRekening("asd");
+//                
+//                rekeningService.saveOrUpdate(rekening);
+
+//                // send message email
+//                //creating message
+//                SimpleMailMessage message = new SimpleMailMessage();
+//                message.setFrom("widyakartikamail@gmail.com");
+//                message.setTo(mahasiswa.getEmail());  
+//                message.setSubject("Pendaftaran Mahasiswa Uwika");  
+//                message.setText("Selamat anda telah bergabung\n" + "No Pendaftaran anda adalah : " + mahasiswa.getNoPendaftaran() + 
+//                        "\n<a href=\"" + request.getRequestURL().toString().split("/")[1] + "?param=" + mahasiswa.getUuid()+ 
+//                        "\">Klik disini untuk memasukan rekening</a>");  
+                
+                
+                
                 //sending message  
-                mailSender.send(message);   
-                
-                
+                MimeMessage mime = this.mailSender.createMimeMessage();
+                MimeMessageHelper helper = new MimeMessageHelper(mime, true);
+                helper.setFrom("widyakartikamail@gmail.com");
+                helper.setTo(mahasiswa.getEmail());
+                helper.setSubject("Pendaftaran Mahasiswa Uwika");
+                String htmlText = "Selamat anda telah bergabung<br/>" + "No Pendaftaran anda adalah : " + mahasiswa.getNoPendaftaran() + 
+                        "<br/>Untuk melihat pembayaran anda telah kami terima bisa lewat link dibawah ini<br/><a href=\"http://localhost:9999/RegistrasiMahasiswa/rekening?param=" + mahasiswa.getUuid()+ 
+                        "\">Klik disini untuk memasukan rekening</a>";
+                helper.setText(htmlText,true);
+                this.mailSender.send(mime);
+             
                 return modelAndView;
             } 
             catch (Exception e) {
@@ -109,4 +135,7 @@ public class RegistrasiController {
         });
     }
     
+    public void sendMimeMessage(String from, String[] to, String subject, String msg) throws Exception{
+        
+    }
 }

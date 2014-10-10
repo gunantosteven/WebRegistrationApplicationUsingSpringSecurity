@@ -25,8 +25,9 @@
                     <thead>
                         <tr>
                             <th width="20%">No. Pendaftaran</th>
-                            <th width="30%">Jurusan</th>
-                            <th width="30%">Nama Lengkap</th>
+                            <th width="20%">Jurusan</th>
+                            <th width="25%">Nama Lengkap</th>
+                            <th width="15%">Status</th>
                             <th width="20%">Action</th>
                         </tr>
                     </thead>
@@ -70,8 +71,9 @@
                             },
                         "bSortable": true,
                         "aTargets": [0]}, 
-                        { sWidth: '30%', "bSortable": false }, 
-                        { sWidth: '30%', "bSortable": false },
+                        { sWidth: '20%', "bSortable": false }, 
+                        { sWidth: '25%', "bSortable": false },
+                        { sWidth: '15%', "bSortable": false },
                         { sWidth: '20%', 
                             "mRender": function( data, type, row ) {
                                     return '<a href="mahasiswa/delete/'+row[0]+'">Delete</a>';

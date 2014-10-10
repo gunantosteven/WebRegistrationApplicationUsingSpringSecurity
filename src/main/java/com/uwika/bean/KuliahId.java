@@ -17,10 +17,6 @@ public class KuliahId  implements java.io.Serializable {
     public KuliahId() {
     }
 
-	
-    public KuliahId(int id) {
-        this.id = id;
-    }
     public KuliahId(int id, String namamatakuliah, String nik, String nim) {
        this.id = id;
        this.namamatakuliah = namamatakuliah;

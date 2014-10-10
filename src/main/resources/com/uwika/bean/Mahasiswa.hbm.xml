@@ -35,5 +35,12 @@
         <property name="tanggalLahir" type="date">
             <column name="tanggalLahir" length="10" />
         </property>
+        <property name="uuid" type="string">
+            <column name="uuid" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="30" />
+        </property>
+        <one-to-one name="Rekening" class="com.uwika.bean.Rekening" cascade="save-update, delete" fetch="select"></one-to-one>
     </class>
 </hibernate-mapping>

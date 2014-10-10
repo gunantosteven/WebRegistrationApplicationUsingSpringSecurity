@@ -11,13 +11,15 @@ import java.util.Date;
  * @author Steven Gunanto
  */
 public class Mahasiswa implements java.io.Serializable {
-   private String noPendaftaran,jurusan,nama,jenisKelamin,agama,alamat,noTelpon,email,tempatLahir;
+   private String noPendaftaran,jurusan,nama,jenisKelamin,agama,alamat,noTelpon,email,tempatLahir,status;
    private Date tanggalLahir;
+   private Rekening rekening;
+   private String uuid;
 
     public Mahasiswa() {
     }
 
-    public Mahasiswa(String noPendaftaran, String jurusan, String nama, String jenisKelamin, String agama, String alamat, String noTelpon, String email, Date tanggalLahir) {
+    public Mahasiswa(String noPendaftaran, String jurusan, String nama, String jenisKelamin, String agama, String alamat, String noTelpon, String email, String tempatLahir, String status, Date tanggalLahir, Rekening rekening, String uuid) {
         this.noPendaftaran = noPendaftaran;
         this.jurusan = jurusan;
         this.nama = nama;
@@ -26,10 +28,29 @@ public class Mahasiswa implements java.io.Serializable {
         this.alamat = alamat;
         this.noTelpon = noTelpon;
         this.email = email;
-        this.tanggalLahir = tanggalLahir;
         this.tempatLahir = tempatLahir;
+        this.status = status;
+        this.tanggalLahir = tanggalLahir;
+        this.rekening = rekening;
+        this.uuid = uuid;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+    
+    public Rekening getRekening() {
+        return rekening;
+    }
+
+    public void setRekening(Rekening rekening) {
+        this.rekening = rekening;
+    }
+    
     public String getAgama() {
         
         return agama;
@@ -109,5 +130,13 @@ public class Mahasiswa implements java.io.Serializable {
 
     public void setTempatLahir(String tempatLahir) {
         this.tempatLahir = tempatLahir;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

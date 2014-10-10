@@ -13,6 +13,15 @@ public class UserRole {
     private User user;
     private String role;
 
+    public UserRole() {
+    }
+
+    public UserRole(Integer userRoleId, User user, String role) {
+        this.userRoleId = userRoleId;
+        this.user = user;
+        this.role = role;
+    }
+    
     public Integer getUserRoleId() {
         return userRoleId;
     }

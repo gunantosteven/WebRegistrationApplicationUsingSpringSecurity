@@ -13,7 +13,7 @@ public class Kuliah implements java.io.Serializable {
 
     public Kuliah() {
     }
-
+    
     public Kuliah(KuliahId id) {
        this.id = id;
     }

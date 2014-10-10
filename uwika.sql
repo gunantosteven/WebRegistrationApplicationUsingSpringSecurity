@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Sep 24, 2014 at 02:37 PM
+-- Generation Time: Oct 10, 2014 at 10:46 AM
 -- Server version: 5.0.27
 -- PHP Version: 5.2.1
 -- 
@@ -27,8 +27,6 @@ CREATE TABLE `dosen` (
 -- Dumping data for table `dosen`
 -- 
 
-INSERT INTO `dosen` (`nik`, `nama`, `alamat`) VALUES 
-('1', '1', ' a 1');
 
 -- --------------------------------------------------------
 
@@ -42,17 +40,13 @@ CREATE TABLE `kuliah` (
   `nik` varchar(20) NOT NULL,
   `nim` varchar(20) NOT NULL,
   PRIMARY KEY  (`id`,`namamatakuliah`,`nik`,`nim`),
-  KEY `FKBD39F6CE3AB507E1` (`nik`),
-  KEY `FKBD39F6CEF172AEC` (`nim`)
+  KEY `FKBD39F6CE3AB507E1` (`nik`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- 
 -- Dumping data for table `kuliah`
 -- 
 
-INSERT INTO `kuliah` (`id`, `namamatakuliah`, `nik`, `nim`) VALUES 
-(1, 'Mandarin', '1', '20141'),
-(2, 'Mandarin', '1', '20142');
 
 -- --------------------------------------------------------
 
@@ -65,12 +59,14 @@ CREATE TABLE `mahasiswa` (
   `jurusan` varchar(50) default NULL,
   `nama` varchar(255) default NULL,
   `jenisKelamin` varchar(20) default NULL,
+  `tempatLahir` varchar(50) default NULL,
   `agama` varchar(20) default NULL,
   `alamat` varchar(255) default NULL,
   `noTelpon` varchar(30) default NULL,
   `email` varchar(30) default NULL,
   `tanggalLahir` date default NULL,
-  `tempatLahir` varchar(50) default NULL,
+  `uuid` varchar(255) default NULL,
+  `status` varchar(30) default NULL,
   PRIMARY KEY  (`noPendaftaran`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -78,9 +74,32 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data for table `mahasiswa`
 -- 
 
-INSERT INTO `mahasiswa` (`noPendaftaran`, `jurusan`, `nama`, `jenisKelamin`, `agama`, `alamat`, `noTelpon`, `email`, `tanggalLahir`, `tempatLahir`) VALUES 
-('20141', 'informatika', 'Steven Gunanto', 'l', 'kristen', 'kalijudan', '083854968000', 'stevengunanto@yahoo.com', '1994-10-19', 'Surabaya'),
-('20142', 'akuntasi', 'Siska', 'p', 'kristen', 'kalijudan', 's', 'stevengunanto@yahoo.com', '2016-12-22', 'Surabaya');
+INSERT INTO `mahasiswa` (`noPendaftaran`, `jurusan`, `nama`, `jenisKelamin`, `tempatLahir`, `agama`, `alamat`, `noTelpon`, `email`, `tanggalLahir`, `uuid`, `status`) VALUES 
+('20141', 'informatika', 'Steven Gunanto', 'l', 'Surabaya', 'katolik', 'kalijudan', '083854968000', 'gunantosteven@gmail.com', '2014-10-19', NULL, 'SUDAH BAYAR'),
+('20142', 'informatika', 'Steven Gunanto', 'l', 'Surabaya', 'kristen', 'kalijudan', '083854968000', 'gunantosteven@gmail.com', '2014-10-19', NULL, 'SUDAH BAYAR'),
+('20143', 'informatika', 'Steven Gunanto', 'l', 'Surabaya', 'kristen', 'kalijudan', '083854968000', 'gunantosteven@gmail.com', '2014-10-19', '39535b6c-048d-4e06-ba7b-af53b9e55380', 'BELUM BAYAR');
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `rekening`
+-- 
+
+CREATE TABLE `rekening` (
+  `noPendaftaran` varchar(20) NOT NULL,
+  `noRekening` varchar(50) default NULL,
+  `namaRekening` varchar(255) default NULL,
+  `nominal` int(11) default NULL,
+  PRIMARY KEY  (`noPendaftaran`),
+  KEY `FKDD74C5016FA9493B` (`noPendaftaran`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- 
+-- Dumping data for table `rekening`
+-- 
+
+INSERT INTO `rekening` (`noPendaftaran`, `noRekening`, `namaRekening`, `nominal`) VALUES 
+('20143', 'asdf', 'asdf', 1);
 
 -- --------------------------------------------------------
 
@@ -94,15 +113,14 @@ CREATE TABLE `user_roles` (
   `role` varchar(45) NOT NULL,
   PRIMARY KEY  (`user_role_id`),
   KEY `FK7342994986BB3AC1` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `user_roles`
 -- 
 
 INSERT INTO `user_roles` (`user_role_id`, `username`, `role`) VALUES 
-(1, 'steven', 'ROLE_ADMIN'),
-(2, 'user', 'ROLE_USER');
+(1, 'gunsoft', 'ROLE_ADMIN');
 
 -- --------------------------------------------------------
 
@@ -122,8 +140,7 @@ CREATE TABLE `users` (
 -- 
 
 INSERT INTO `users` (`username`, `password`, `enabled`) VALUES 
-('steven', 'steven', ''),
-('user', 'user', '');
+('gunsoft', 'gunsoft', '');
 
 -- 
 -- Constraints for dumped tables
@@ -133,8 +150,13 @@ INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
 -- Constraints for table `kuliah`
 -- 
 ALTER TABLE `kuliah`
-  ADD CONSTRAINT `FKBD39F6CE3AB507E1` FOREIGN KEY (`nik`) REFERENCES `dosen` (`nik`),
-  ADD CONSTRAINT `FKBD39F6CEF172AEC` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`noPendaftaran`);
+  ADD CONSTRAINT `FKBD39F6CE3AB507E1` FOREIGN KEY (`nik`) REFERENCES `dosen` (`nik`);
+
+-- 
+-- Constraints for table `rekening`
+-- 
+ALTER TABLE `rekening`
+  ADD CONSTRAINT `FKDD74C5016FA9493B` FOREIGN KEY (`noPendaftaran`) REFERENCES `mahasiswa` (`noPendaftaran`);
 
 -- 
 -- Constraints for table `user_roles`

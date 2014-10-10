@@ -17,6 +17,15 @@ public class User {
     private boolean enabled;
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
+    public User() {
+    }
+
+    public User(String username, String password, boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+    }
+    
     public String getUsername() {
         return username;
     }

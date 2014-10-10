@@ -6,7 +6,9 @@ package com.uwika.controller;
 
 import com.uwika.bean.Base;
 import com.uwika.bean.Mahasiswa;
+import com.uwika.bean.Rekening;
 import com.uwika.service.MahasiswaService;
+import com.uwika.service.RekeningService;
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,6 +39,9 @@ public class MahasiswaController {
     @Autowired
     private MahasiswaService mahasiswaService;
     
+    @Autowired
+    private RekeningService rekeningService;
+    
     @RequestMapping(value = "/admin/mahasiswa", method = RequestMethod.GET)
     public String index() {
         return "admin/mahasiswa";
@@ -45,6 +50,8 @@ public class MahasiswaController {
     @RequestMapping(value ="/admin/mahasiswa/save", method = RequestMethod.POST)
     public String save(ModelMap modelMap, @ModelAttribute Mahasiswa mahasiswa) {
         try {
+            Mahasiswa m = (Mahasiswa) mahasiswaService.select(mahasiswa.getNoPendaftaran());    
+            mahasiswa.setUuid(m.getUuid());
             mahasiswaService.saveOrUpdate(mahasiswa);
         } catch (Exception e) {
             logger.error(e, e);
@@ -81,7 +88,7 @@ public class MahasiswaController {
     @RequestMapping(value ="/admin/mahasiswa/delete/{id}", method = RequestMethod.GET)
     public String delete(ModelMap modelMap, @PathVariable String id) {
         try {
-            mahasiswaService.delete(id);
+            mahasiswaService.delete(mahasiswaService.get(id).get(0));
         } catch (Exception e) {
             logger.error(e,e);
         }

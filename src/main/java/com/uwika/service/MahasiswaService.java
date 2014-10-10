@@ -84,10 +84,11 @@ public class MahasiswaService extends BaseService {
         
         List<String[]> strings = new ArrayList<String[]>();
         for (Mahasiswa mahasiswa : mahasiswas) {
-            String[] ses = new String[4];
+            String[] ses = new String[5];
             ses[0] = mahasiswa.getNoPendaftaran();
             ses[1] = mahasiswa.getJurusan();
             ses[2] = mahasiswa.getNama();
+            ses[3] = mahasiswa.getStatus();
             
             strings.add(ses);
         }
@@ -114,13 +115,17 @@ public class MahasiswaService extends BaseService {
                 .setString("noPendaftaran", id)
                 .uniqueResult();
     }
+    
+    public Object selectBasedOnUuid(String uuid) {
+        return (Mahasiswa) sessionFactory.getCurrentSession()
+                .createQuery("from Mahasiswa where uuid = :uuid")
+                .setString("uuid", uuid)
+                .uniqueResult();
+    }
 
     @Override
     public void delete(Object o) throws Exception {
-        sessionFactory.getCurrentSession()
-                .createQuery("DELETE FROM Mahasiswa where noPendaftaran = :noPendaftaran")
-                .setString("noPendaftaran", o.toString())
-                .executeUpdate();
+        sessionFactory.getCurrentSession().delete(o);
     }
 
     @Override

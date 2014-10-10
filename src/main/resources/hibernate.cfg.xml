@@ -12,5 +12,6 @@
     <mapping resource="com/uwika/bean/Kuliah.hbm.xml"/>
     <mapping resource="com/uwika/bean/Users.hbm.xml"/>
     <mapping resource="com/uwika/bean/UserRoles.xml"/>
+    <mapping resource="com/uwika/bean/Rekening.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
