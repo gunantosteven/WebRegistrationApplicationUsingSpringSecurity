@@ -34,7 +34,7 @@
           p:removeAbandonedTimeout="30"
           p:validationQuery="SELECT 1"/>
 
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:configLocation="classpath:hibernate.cfg.xml">
         <property name="hibernateProperties">
@@ -47,7 +47,7 @@
         </property>
     </bean>
     
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
           p:sessionFactory-ref="sessionFactory"/>
     
     <tx:advice id="txAdvice" transaction-manager="transactionManager">

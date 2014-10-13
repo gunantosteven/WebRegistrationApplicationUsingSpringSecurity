@@ -3,7 +3,7 @@ Project Template using Bootstrap - JQuery - JSP - SpringMVC - SpringSecurity - H
 
 Tools
 -------------------
-* IDE - Netbeans 7.2
+* IDE - Netbeans 8.0.1
 * DB - MySQL
 * Java Framework - Hibernate ORM - SpringMVC - SpringSecurity - SpringMail
 * Jasper Report 5.5.1

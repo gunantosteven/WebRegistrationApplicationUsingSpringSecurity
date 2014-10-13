@@ -98,7 +98,7 @@ public class RegistrasiController {
                 helper.setTo(mahasiswa.getEmail());
                 helper.setSubject("Pendaftaran Mahasiswa Uwika");
                 String htmlText = "Selamat anda telah bergabung<br/>" + "No Pendaftaran anda adalah : " + mahasiswa.getNoPendaftaran() + 
-                        "<br/>Untuk melihat pembayaran anda telah kami terima bisa lewat link dibawah ini<br/><a href=\"http://localhost:9999/RegistrasiMahasiswa/rekening?param=" + mahasiswa.getUuid()+ 
+                        "<br/>Untuk melihat pembayaran anda telah kami terima bisa lewat link dibawah ini<br/><a href=\"http://registrasi-gunanto.rhcloud.com/RegistrasiMahasiswa/rekening?param=" + mahasiswa.getUuid()+ 
                         "\">Klik disini untuk memasukan rekening</a>";
                 helper.setText(htmlText,true);
                 this.mailSender.send(mime);

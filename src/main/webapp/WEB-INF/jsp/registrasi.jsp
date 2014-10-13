@@ -27,7 +27,6 @@
                         <!-- Form Name -->
                         <legend>Identitas Mahasiswa</legend>
                         
-                        
                         <!-- Text input-->
                         <div class="control-group">
                             <label class="control-label" for="noPendaftaran">No. Pendaftaran</label>
