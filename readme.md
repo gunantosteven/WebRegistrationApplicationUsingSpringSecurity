@@ -7,7 +7,7 @@ Tools
 * DB - MySQL
 * Java Framework - Hibernate ORM - SpringMVC - SpringSecurity - SpringMail
 * Jasper Report 5.5.1
-* JS Framework - JQuery
+* JS Framework - JQuery - AngularJS
 * CSS Framework - Bootstrap
 * Build Tool - Maven
 
