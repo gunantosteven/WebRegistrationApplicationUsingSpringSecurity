@@ -72,7 +72,7 @@ public class DosenController {
     public String add() {
         return "admin/dosenEdit";
     }
-    
+
     @RequestMapping(value ="/admin/dosen/save", method = RequestMethod.POST)
     public String save(ModelMap modelMap, @ModelAttribute Dosen dosen) {
         try {

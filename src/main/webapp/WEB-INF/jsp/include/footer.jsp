@@ -26,3 +26,7 @@
         
         <!-- Select2 JavaScript -->
         <script src="${pageContext.request.contextPath}/js/select2.js"></script>
+        
+        <!-- Angular JS -->
+        <script src="${pageContext.request.contextPath}/js/angular.min.js"></script>
+

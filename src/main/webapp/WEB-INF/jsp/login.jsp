@@ -42,57 +42,62 @@
         
         <div class="container">
             
-            <div id="dynamic">
-                
-                <c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if>
-		<c:if test="${not empty msg}">
-			<div class="msg">${msg}</div>
-		</c:if>
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12">
 
-                
-                <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/j_spring_security_check" >  
-                    <fieldset>
+                        <c:if test="${not empty error}">
+                                <div class="error">${error}</div>
+                        </c:if>
+                        <c:if test="${not empty msg}">
+                                <div class="msg">${msg}</div>
+                        </c:if>
 
-                        <!-- Form Name -->
-                        <legend>Login Admin</legend>
-                        
-                        
-                        <!-- Text input-->
-                        <div class="control-group">
-                            <label class="control-label" for="username">Username</label>
-                            <div class="controls">
-                                <input id="noPendaftaran" name="username" placeholder="Username" class="form-control" required="" type="text">
-                            </div>
-                        </div>
-                        
-                        <!-- Text input-->
-                        <div class="control-group">
-                            <label class="control-label" for="password">Password</label>
-                            <div class="controls">
-                                <input id="noPendaftaran" name="password" placeholder="Password" class="form-control" required="" type="password">
-                            </div>
-                        </div>
-                        
-                        <br>
-                            
-                        <!-- submit -->
-                        <div class="control-group">
-                            <div class="controls">
-                                <button type="submit" id="submit" class="btn btn-success">Login</button>
-                            </div>
-                        </div>
-                        
-                        <input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-                        
-                        <br>
-                        
-                    </fieldset>
-                </form>
 
-            </div>
+                        <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/j_spring_security_check" >  
+                            <fieldset>
+
+                                <!-- Form Name -->
+                                <legend>Login Admin</legend>
+
+
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="username">Username</label>
+                                    <div class="controls">
+                                        <input id="noPendaftaran" name="username" placeholder="Username" class="form-control" required="" type="text">
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="password">Password</label>
+                                    <div class="controls">
+                                        <input id="noPendaftaran" name="password" placeholder="Password" class="form-control" required="" type="password">
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <!-- submit -->
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" id="submit" class="btn btn-success">Login</button>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="${_csrf.parameterName}"
+                                        value="${_csrf.token}" />
+
+                                <br>
+
+                            </fieldset>
+                        </form>
+                                        
+                    </div>
+                </div>
+            </div>                        
+        </div>
         
         
         <jsp:include page="include/footer.jsp" />

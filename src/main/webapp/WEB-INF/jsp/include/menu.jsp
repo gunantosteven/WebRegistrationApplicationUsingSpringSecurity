@@ -5,7 +5,7 @@
 --%>
 
     <div class="brand">Universitas Widya Kartika</div>
-    <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
+    <div class="address-bar">Jl. Sutorejo Prima Utara II/1 Surabaya | Jawa Timur | Indonesia</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse" role="navigation">
