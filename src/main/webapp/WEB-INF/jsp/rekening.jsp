@@ -20,77 +20,83 @@
         
         <div class="container">
             
-            <div id="dynamic">
-                <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/rekening/save" >  
-                    <fieldset>
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12">
+                        
+                        <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/rekening/save" >  
+                            <fieldset>
 
-                        <!-- Form Name -->
-                        <legend>Masukan Rekening</legend>
-                        
-                        
-                        <!-- Text input-->
-                        <div class="control-group">
-                            <label class="control-label" for="noPendaftaran">No. Pendaftaran</label>
-                            <div class="controls">
-                                <input id="noPendaftaran" name="noPendaftaran" value="${mahasiswa.noPendaftaran}" placeholder="masukkan no. pendaftaran" class="form-control" required="" type="text" readonly="readonly">
-                            </div>
-                        </div>
+                                <!-- Form Name -->
+                                <legend>Masukan Rekening</legend>
 
 
-                        <!-- Text input-->
-                        <div class="control-group">
-                            <label class="control-label" for="noRekening">No Rekening</label>
-                            <div class="controls">
-                                <input id="noRekening" name="noRekening" value="${mahasiswa.rekening.noRekening}" placeholder="masukkan no rekening" class="form-control" required="" type="text">
-                            </div>
-                        </div>
-                        
-                        <!-- Text input-->
-                        <div class="control-group">
-                            <label class="control-label" for="namaRekening">Nama Rekening</label>
-                            <div class="controls">
-                                <input id="namaRekening" name="namaRekening" value="${mahasiswa.rekening.namaRekening}" placeholder="masukkan nama rekening" class="form-control" required="" type="text">
-                            </div>
-                        </div>
-                        
-                        <!-- Text input-->
-                        <div class="control-group">
-                            <label class="control-label" for="nominal">Nominal</label>
-                            <div class="controls">
-                                <input id="nominal" name="nominal" value="${mahasiswa.rekening.nominal}" placeholder="masukkan nominal" class="form-control" required="" type="text">
-                            </div>
-                        </div>
-                        
-                        <!-- Text input-->
-                        <div class="control-group">
-                            <label class="control-label" for="status">status</label>
-                            <div class="controls">
-                                <input id="status" name="status" value="${mahasiswa.status}" placeholder="masukkan no. status" class="form-control" required="" type="text" readonly="readonly">
-                            </div>
-                        </div>
-                        
-                        
-                        <br> <!--add distance between email and button submit-->
-                        
-                        <!-- submit -->
-                        <div class="control-group">
-                            <div class="controls">
-                                <button type="submit" id="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-                        
-                        <br> <!--add distance between submit and footer-->
-                        
-                        <input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-                        
-                    </fieldset>
-                </form>
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="noPendaftaran">No. Pendaftaran</label>
+                                    <div class="controls">
+                                        <input id="noPendaftaran" name="noPendaftaran" value="${mahasiswa.noPendaftaran}" placeholder="masukkan no. pendaftaran" class="form-control" required="" type="text" readonly="readonly">
+                                    </div>
+                                </div>
 
-            </div>
+
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="noRekening">No Rekening</label>
+                                    <div class="controls">
+                                        <input id="noRekening" name="noRekening" value="${mahasiswa.rekening.noRekening}" placeholder="masukkan no rekening" class="form-control" required="" type="text">
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="namaRekening">Nama Rekening</label>
+                                    <div class="controls">
+                                        <input id="namaRekening" name="namaRekening" value="${mahasiswa.rekening.namaRekening}" placeholder="masukkan nama rekening" class="form-control" required="" type="text">
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="nominal">Nominal</label>
+                                    <div class="controls">
+                                        <input id="nominal" name="nominal" value="${mahasiswa.rekening.nominal}" placeholder="masukkan nominal" class="form-control" required="" type="number">
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="status">Status</label>
+                                    <div class="controls">
+                                        <input id="status" name="status" value="${mahasiswa.status}" placeholder="masukkan no. status" class="form-control" required="" type="text" readonly="readonly">
+                                    </div>
+                                </div>
+
+
+                                <br> <!--add distance between email and button submit-->
+
+                                <!-- submit -->
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" id="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+
+                                <br> <!--add distance between submit and footer-->
+
+                                <input type="hidden" name="${_csrf.parameterName}"
+                                        value="${_csrf.token}" />
+
+                            </fieldset>
+                        </form>
+                                        
+                    </div>      
+                </div> 
+            </div>                            
 
 
         </div> <!-- /container -->
+        
         <jsp:include page="include/footer.jsp" />
         
         <!-- Script to Activate the Carousel -->

@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -98,11 +99,10 @@ public class RegistrasiController {
                 helper.setTo(mahasiswa.getEmail());
                 helper.setSubject("Pendaftaran Mahasiswa Uwika");
                 String htmlText = "Selamat anda telah bergabung<br/>" + "No Pendaftaran anda adalah : " + mahasiswa.getNoPendaftaran() + 
-                        "<br/>Untuk melihat pembayaran anda telah kami terima bisa lewat link dibawah ini<br/><a href=\"http://registrasi-gunanto.rhcloud.com/RegistrasiMahasiswa/rekening?param=" + mahasiswa.getUuid()+ 
+                        "<br/>Untuk melihat pembayaran anda telah kami terima bisa lewat link dibawah ini<br/><a href=\"http://" + request.getServerName() + "/rekening?param=" + mahasiswa.getUuid()+ 
                         "\">Klik disini untuk memasukan rekening</a>";
                 helper.setText(htmlText,true);
                 this.mailSender.send(mime);
-             
                 return modelAndView;
             } 
             catch (Exception e) {

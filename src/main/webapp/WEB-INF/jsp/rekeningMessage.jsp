@@ -16,9 +16,19 @@
         
         <jsp:include page="include/menu.jsp" />
 
-        <h1>${message}</h1>
-        
-        
+        <div class="container">
+            
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12">
+                        
+                        <h1>${message}</h1>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>    
+
         <jsp:include page="include/footer.jsp" />
         
         <!-- Script to Activate the Carousel -->
