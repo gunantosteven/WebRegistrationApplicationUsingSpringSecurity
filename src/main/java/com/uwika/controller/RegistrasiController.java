@@ -9,12 +9,20 @@ import com.uwika.bean.Rekening;
 import com.uwika.service.MahasiswaService;
 import com.uwika.service.RekeningService;
 import java.beans.PropertyEditorSupport;
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import javax.activation.DataSource;
 import javax.mail.internet.MimeMessage;
+import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -55,11 +63,10 @@ public class RegistrasiController {
         return "registrasi";
     }
     
-    @RequestMapping(value="/registrasi/export", method = RequestMethod.POST )
-    public ModelAndView save(ModelAndView modelAndView, @ModelAttribute Mahasiswa mahasiswa, HttpServletRequest request)
+    @RequestMapping(value="/registrasi/create", method = RequestMethod.POST )
+    public ModelAndView save(ModelAndView modelAndView, @ModelAttribute Mahasiswa mahasiswa, HttpServletRequest request) throws Exception
     {
         int count = 0;
-        
         do
         {
             count++;
@@ -69,9 +76,14 @@ public class RegistrasiController {
                 mahasiswaService.save(mahasiswa);
                 
                 // creating report
+                List<Mahasiswa> model = mahasiswaService.get(mahasiswa.getNoPendaftaran());
                 modelAndView.addObject("format", "pdf");
-                modelAndView.addObject("dataSource", mahasiswaService.get(mahasiswa.getNoPendaftaran()));
-                
+                modelAndView.addObject("dataSource", model);
+                // creating report to be sent to email
+                JasperPrint jasperPrint = JasperFillManager.fillReport(request.getServletContext().getResourceAsStream("/WEB-INF/jrxml/calonmahasiswa.jasper") , null, new JRBeanCollectionDataSource(model));
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
+                DataSource aAttachment =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
 //                Rekening rekening = new Rekening();
 //                rekening.setHargaTransfer(0);
 //                rekening.setMahasiswa(mahasiswa);
@@ -98,20 +110,26 @@ public class RegistrasiController {
                 helper.setFrom("widyakartikamail@gmail.com");
                 helper.setTo(mahasiswa.getEmail());
                 helper.setSubject("Pendaftaran Mahasiswa Uwika");
+                helper.addAttachment("calonmahasiswa", aAttachment);
                 String htmlText = "Selamat anda telah bergabung<br/>" + "No Pendaftaran anda adalah : " + mahasiswa.getNoPendaftaran() + 
-                        "<br/>Untuk melihat pembayaran anda telah kami terima bisa lewat link dibawah ini<br/><a href=\"http://" + request.getServerName() + "/rekening?param=" + mahasiswa.getUuid()+ 
+                        "<br/>Untuk melihat pembayaran anda telah kami terima bisa lewat link dibawah ini<br/><a href=\"http://" + request.getServerName() + ":8080/rekening?param=" + mahasiswa.getUuid()+ 
                         "\">Klik disini untuk memasukan rekening</a>";
                 helper.setText(htmlText,true);
                 this.mailSender.send(mime);
                 return modelAndView;
+
             } 
             catch (Exception e) {
+                logger.error(e, e);
                 if(e.getMessage().startsWith("Could not execute JDBC batch update;"))
                 {
                     mahasiswa.setNoPendaftaran(mahasiswaService.
                             getDifferentNoPendaftaran(mahasiswa.getNoPendaftaran()));
                 }
-                logger.error(e, e);
+                else
+                { 
+                    throw new Exception(e.getCause());
+                }
             }
         }while(10 >= count);
         
