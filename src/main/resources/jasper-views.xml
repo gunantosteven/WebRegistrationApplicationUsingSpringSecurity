@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     
-    <bean id="registrasi/export" class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
+    <bean id="registrasi/create" class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView"
     
           p:url="/WEB-INF/jrxml/calonmahasiswa.jrxml"
           p:reportDataKey="dataSource"
