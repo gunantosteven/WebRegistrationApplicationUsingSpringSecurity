@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="box">
                     <div class="col-lg-12">
-                        <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/registrasi/export" >  
+                        <form class="form-horizontal" method="POST" action="${pageContext.request.contextPath}/registrasi/create" >  
                             <fieldset>
                                 <div ng-app="">
                                     
